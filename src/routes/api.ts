@@ -1,14 +1,18 @@
 import { Router } from 'express';
 
-import * as ApiController from '../controllers/apiController';
+import * as UserController from '../controllers/userController';
+import * as ChampionshipController from '../controllers/championshipController';
 
 const router = Router();
 
-router.get('/ping', ApiController.ping);
+router.get('/ping', UserController.ping);
 
-router.post('/register', ApiController.register);
-router.post('/login', ApiController.login);
+router.post('/user/register', UserController.register);
+router.get('/user/list', UserController.list);
+router.post('/login', UserController.login);
 
-router.get('/list', ApiController.list);
+
+router.post('/championship/create', ChampionshipController.create);
+
 
 export default router;
