@@ -6,11 +6,10 @@ export const ping = (req: Request, res: Response) => {
 }
 
 export const register = async (req: Request, res: Response) => {
-    console.log(req);
     if(req.body.username && req.body.password) {
         let { username, password } = req.body;
-
         let hasUser = await User.findOne({where: { username }});
+
         if(!hasUser) {
             let newUser = await User.create({ username, password });
 
@@ -19,9 +18,9 @@ export const register = async (req: Request, res: Response) => {
         } else {
             res.json({ error: 'Usuário já existe.' });
         }
+    }else {
+        res.json({ error: 'Usuário e/ou senha não enviados.' });
     }
-
-    res.json({ error: 'Usuário e/ou senha não enviados.' });
 }
 
 export const login = async (req: Request, res: Response) => {
@@ -37,9 +36,9 @@ export const login = async (req: Request, res: Response) => {
             res.json({ status: true });
             return;
         }
+    }else{
+        res.json({ status: false });
     }
-
-    res.json({ status: false });
 }
 
 export const list = async (req: Request, res: Response) => {
