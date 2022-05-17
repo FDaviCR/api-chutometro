@@ -1,4 +1,4 @@
 # api-chutometro
 
 
-API usada para entretenimento em um pequeno jogo de acertos de vencedores em partidas de futebol.
+Jogo de acertos de vencedores em partidas de futebol.

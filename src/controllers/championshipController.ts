@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { Championship } from '../models/Championship';
 
-export const create = async (req: Request, res: Response) => {
+export const criar = async (req: Request, res: Response) => {
     if(req.body.name && req.body.edition) {
         let { name, edition } = req.body;
         let hasChampionship = await Championship.findOne({where: { name, edition }});
@@ -17,4 +17,16 @@ export const create = async (req: Request, res: Response) => {
     }else {
         res.json({ error: 'Campeonato e/ou edição não enviados.' });
     }
+}
+
+export const ler = async (req: Request, res: Response) => {
+
+}
+
+export const atualizar = async (req: Request, res: Response) => {
+    
+}
+
+export const deletar = async (req: Request, res: Response) => {
+    
 }

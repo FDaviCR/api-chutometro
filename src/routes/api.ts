@@ -12,7 +12,7 @@ router.get('/user/list', UserController.list);
 router.post('/login', UserController.login);
 
 
-router.post('/championship/create', ChampionshipController.create);
+router.post('/championship/create', ChampionshipController.criar);
 
 
 export default router;
