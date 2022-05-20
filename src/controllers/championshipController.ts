@@ -10,7 +10,7 @@ export const create = async (req: Request, res: Response) => {
             let newChampionship = await Championship.create({ name, edition });
 
             res.status(201);
-            res.json({ id: newChampionship.id });
+            res.json({ msg: "Cadastrado com sucesso", id: newChampionship.id });
         } else {
             res.json({ error: 'Campeonato já existe.' });
         }
@@ -31,5 +31,9 @@ export const update = async (req: Request, res: Response) => {
 }
 
 export const destroy = async (req: Request, res: Response) => {
-    
+    let { id } = req.params;
+
+    await Championship.destroy({ where:{ id } });
+    res.status(204);
+    res.json({ msg: "Excluido com sucesso"})
 }
