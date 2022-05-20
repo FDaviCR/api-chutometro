@@ -27,7 +27,20 @@ export const list = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
-    
+    let { id } = req.params;
+    let championship = await Championship.findByPk(id);
+
+    if(championship) {
+        championship.name = req.body.name;
+        championship.edition = req.body.edition;
+
+        await championship.save();
+
+        res.status(200);
+        res.json({msg: 'Campeonato atualizado.'})
+    } else {
+        res.json({ error: 'Campeonato já existe.' });
+    }
 }
 
 export const destroy = async (req: Request, res: Response) => {
