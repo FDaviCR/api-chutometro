@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { Team } from '../models/Team';
 
 export const create = async (req: Request, res: Response) => {
-    if(req.body.name && req.body.edition) {
+    if(req.body.name) {
         let { name } = req.body;
         let hasTeam = await Team.findOne({where: { name }});
 
