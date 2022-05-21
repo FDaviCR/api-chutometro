@@ -1,13 +1,12 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../database/pg';
 
-export interface ChampionshipInstance extends Model {
+export interface TeamInstance extends Model {
     id: number;
     name: string;
-    edition: number;
 }
 
-export const Championship = sequelize.define<ChampionshipInstance>('Championship', {
+export const Team = sequelize.define<TeamInstance>('Team', {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -15,11 +14,8 @@ export const Championship = sequelize.define<ChampionshipInstance>('Championship
     },
     name: {
         type: DataTypes.STRING
-    },
-    edition: {
-        type: DataTypes.NUMBER
     }
 }, {
-    tableName: 'championship',
+    tableName: 'team',
     timestamps: false
 });
