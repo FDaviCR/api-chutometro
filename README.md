@@ -1,4 +1,4 @@
 # api-chutometro
 
 
-Jogo de acertos de vencedores em partidas de futebol.
+API para trabalhar dados de partidas esportivas junto com palpites que vão rankear os jogadores.
