@@ -21,6 +21,10 @@ const User = sequelize.define<UserInstance>('User', {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    idTime:{
+        type: DataTypes.INTEGER,
+        allowNull: true
     }
 }, {
     tableName: 'users',
