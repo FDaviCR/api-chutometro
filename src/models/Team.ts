@@ -6,16 +6,20 @@ export interface TeamInstance extends Model {
     name: string;
 }
 
-export const Team = sequelize.define<TeamInstance>('Team', {
+const Team = sequelize.define<TeamInstance>('Team', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     tableName: 'team',
     timestamps: false
 });
+
+Team.sync({force: false});
+module.exports = Team;

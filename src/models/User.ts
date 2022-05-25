@@ -7,7 +7,7 @@ export interface UserInstance extends Model {
     password: string;
 }
 
-export const User = sequelize.define<UserInstance>('User', {
+const User = sequelize.define<UserInstance>('User', {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -15,12 +15,17 @@ export const User = sequelize.define<UserInstance>('User', {
     },
     username: {
         type: DataTypes.STRING,
-        unique: true
+        unique: true,
+        allowNull: false
     },
     password: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     tableName: 'users',
     timestamps: false
 });
+
+User.sync({force: false});
+module.exports = User;

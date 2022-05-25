@@ -7,19 +7,24 @@ export interface ChampionshipInstance extends Model {
     edition: number;
 }
 
-export const Championship = sequelize.define<ChampionshipInstance>('Championship', {
+const Championship = sequelize.define<ChampionshipInstance>('Championship', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
     name: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     edition: {
-        type: DataTypes.NUMBER
+        type: DataTypes.NUMBER,
+        allowNull: false
     }
 }, {
     tableName: 'championship',
     timestamps: false
 });
+
+Championship.sync({force: false});
+module.exports = Championship;
