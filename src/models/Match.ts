@@ -32,7 +32,7 @@ const Match = sequelize.define<MatchInstance>('Match', {
         allowNull: true
     },
 }, {
-    tableName: 'matche',
+    tableName: 'match',
     timestamps: false  
 });
 
