@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 const Championship = require('../models/Championship');
 
 export const create = async (req: Request, res: Response) => {

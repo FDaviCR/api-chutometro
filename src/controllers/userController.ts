@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 const User = require('../models/User');
 
 export const ping = (req: Request, res: Response) => {
