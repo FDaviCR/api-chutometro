@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Team } from '../models/Team';
+const Team = require('../models/Team');
 
 export const create = async (req: Request, res: Response) => {
     if(req.body.name) {

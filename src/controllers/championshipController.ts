@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { Championship } from '../models/Championship';
+const Championship = require('../models/Championship');
 
 export const create = async (req: Request, res: Response) => {
     if(req.body.name && req.body.edition) {
