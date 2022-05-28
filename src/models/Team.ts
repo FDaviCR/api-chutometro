@@ -21,5 +21,5 @@ const Team = sequelize.define<TeamInstance>('Team', {
     timestamps: false
 });
 
-Team.sync({force: false});
+//Team.sync({force: false});
 module.exports = Team;

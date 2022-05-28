@@ -27,5 +27,5 @@ const Rank = sequelize.define<RankInstance>('Rank', {
     timestamps: false
 });
 
-Rank.sync({force: false});
+//Rank.sync({force: false});
 module.exports = Rank;

@@ -36,5 +36,5 @@ const Match = sequelize.define<MatchInstance>('Match', {
     timestamps: false  
 });
 
-Match.sync({force: false});
+//Match.sync({force: false});
 module.exports = Match;

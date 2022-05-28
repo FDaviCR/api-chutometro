@@ -26,5 +26,5 @@ const Guess = sequelize.define<GuessInstance>('Guess', {
     timestamps: false
 });
 
-Guess.sync({force: false});
+//Guess.sync({force: false});
 module.exports = Guess;

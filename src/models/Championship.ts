@@ -26,5 +26,5 @@ const Championship = sequelize.define<ChampionshipInstance>('Championship', {
     timestamps: false
 });
 
-Championship.sync({force: false});
+//Championship.sync({force: false});
 module.exports = Championship;
