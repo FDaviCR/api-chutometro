@@ -23,7 +23,7 @@ const User = sequelize.define<UserInstance>('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    idTime:{
+    idteam:{
         type: DataTypes.INTEGER,
         allowNull: true
     }

@@ -15,24 +15,22 @@ const Match = sequelize.define<MatchInstance>('Match', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    teamA: {
+    teama: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    teamB: {
+    teamb: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    goalsTeamA: {
-        type: DataTypes.NUMBER,
-        allowNull: true
+    goalsteama: {
+        type: DataTypes.INTEGER
     },
-    goalsTeamB: {
-        type: DataTypes.NUMBER,
-        allowNull: true
+    goalsteamb: {
+        type: DataTypes.INTEGER
     },
 }, {
-    tableName: 'match',
+    tableName: 'matchs',
     timestamps: false  
 });
 

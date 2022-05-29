@@ -13,11 +13,15 @@ const Guess = sequelize.define<GuessInstance>('Guess', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    idJogo: {
+    idjogo: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    idVencedor: {
+    idvencedor: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    idjogador: {
         type: DataTypes.INTEGER,
         allowNull: false
     }

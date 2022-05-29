@@ -3,20 +3,20 @@ import { Request, Response } from 'express';
 const Match = require('../models/Match');
 
 export const create = async (req: Request, res: Response) => {
-    if(req.body.name) {
-        let { name } = req.body;
-        let hasMatch = await Match.findOne({where: { name }});
+    if(req.body.teama && req.body.teamb) {
+        let { teama, teamb, goalsteama, goalsteamb } = req.body;
+        let hasMatch = await Match.findOne({where:{ teama, teamb }});
 
         if(!hasMatch) {
-            let newMatch = await Match.create({ name });
+            let newMatch = await Match.create({ teama, teamb, goalsteama, goalsteamb });
 
-            res.status(201);
+            res.status(201); 
             res.json({ msg: "Cadastrado com sucesso", id: newMatch.id });
         } else {
-            res.json({ error: 'Time já existe.' });
+            res.json({ error: 'Partida já existe.' });
         }
     }else {
-        res.json({ error: 'Nome do time não enviado.' });
+        res.json({ error: 'Time(s) não enviado(s).' });
     }
 }
 
@@ -32,14 +32,17 @@ export const update = async (req: Request, res: Response) => {
     let match = await Match.findByPk(id);
 
     if(match) {
-        Match.name = req.body.name;
-
-        await Match.save();
+        await match.update({
+            teama:req.body.teama,
+            teamb:req.body.teamb,
+            goalsteama:req.body.goalsteama,
+            goalsteamb:req.body.goalsteamb
+        });
 
         res.status(200);
-        res.json({msg: 'Time atualizado.'})
+        res.json({msg: 'Partida atualizada.'})
     } else {
-        res.json({ error: 'Time já existe.' });
+        res.json({ error: 'Partida não existe.' });
     }
 }
 
