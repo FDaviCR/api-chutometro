@@ -29,6 +29,9 @@ const Match = sequelize.define<MatchInstance>('Match', {
     goalsteamb: {
         type: DataTypes.INTEGER
     },
+    processado: {
+        type: DataTypes.BOOLEAN
+    }
 }, {
     tableName: 'matchs',
     timestamps: false  
