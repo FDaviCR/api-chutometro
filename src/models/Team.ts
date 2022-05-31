@@ -12,9 +12,13 @@ const Team = sequelize.define<TeamInstance>('Team', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    name: {
+    time: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    escudo: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     tableName: 'team',

@@ -13,47 +13,47 @@ const ChampionshipTable = sequelize.define<ChampionshipTableInstance>('Champions
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    idTeam: {
+    id_time: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    idChampionship: {
+    id_campeonato: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    points:{
+    pontos:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    victory:{
+    vitorias:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    defeat:{
+    derrotas:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    draw:{
+    empates:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    matchs:{
+    partidas:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    position:{
+    posicao:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    GP:{
+    gols_pro:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    GC:{
+    gols_contra:{
         type: DataTypes.NUMBER,
         allowNull: true
     },
-    SG:{
+    saldo:{
         type: DataTypes.NUMBER,
         allowNull: true
     }

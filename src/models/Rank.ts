@@ -13,14 +13,18 @@ const Rank = sequelize.define<RankInstance>('Rank', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    idUser: {
+    id_jogador: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    points:{
+    pontos:{
         type: DataTypes.NUMBER,
         allowNull: false,
         defaultValue: 0
+    },
+    id_campeonato: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     tableName: 'rank',

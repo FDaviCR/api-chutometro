@@ -14,16 +14,16 @@ const User = sequelize.define<UserInstance>('User', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    username: {
+    usuario: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false
     },
-    password: {
+    senha: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    idteam:{
+    id_time:{
         type: DataTypes.INTEGER,
         allowNull: true
     }

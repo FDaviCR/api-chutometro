@@ -13,11 +13,11 @@ const Championship = sequelize.define<ChampionshipInstance>('Championship', {
         autoIncrement: true,
         type: DataTypes.INTEGER
     },
-    name: {
+    campeonato: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    edition: {
+    edicao: {
         type: DataTypes.NUMBER,
         allowNull: false
     }
