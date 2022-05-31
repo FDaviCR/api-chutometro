@@ -21,7 +21,7 @@ const Team = sequelize.define<TeamInstance>('Team', {
         allowNull: true
     }
 }, {
-    tableName: 'team',
+    tableName: 'times',
     timestamps: false
 });
 

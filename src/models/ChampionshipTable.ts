@@ -58,7 +58,7 @@ const ChampionshipTable = sequelize.define<ChampionshipTableInstance>('Champions
         allowNull: true
     }
 }, {
-    tableName: 'championshiptable',
+    tableName: 'tabelas',
     timestamps: false
 });
 

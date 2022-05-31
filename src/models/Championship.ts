@@ -22,7 +22,7 @@ const Championship = sequelize.define<ChampionshipInstance>('Championship', {
         allowNull: false
     }
 }, {
-    tableName: 'championship',
+    tableName: 'campeonatos',
     timestamps: false
 });
 

@@ -27,7 +27,7 @@ const Rank = sequelize.define<RankInstance>('Rank', {
         allowNull: false
     }
 }, {
-    tableName: 'rank',
+    tableName: 'ranks',
     timestamps: false
 });
 

@@ -33,7 +33,7 @@ const Match = sequelize.define<MatchInstance>('Match', {
         type: DataTypes.BOOLEAN
     }
 }, {
-    tableName: 'matchs',
+    tableName: 'partidas',
     timestamps: false  
 });
 

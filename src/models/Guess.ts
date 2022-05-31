@@ -29,7 +29,7 @@ const Guess = sequelize.define<GuessInstance>('Guess', {
         type: DataTypes.BOOLEAN
     }
 }, {
-    tableName: 'guess',
+    tableName: 'palpites',
     timestamps: false
 });
 
