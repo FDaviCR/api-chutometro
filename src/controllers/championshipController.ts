@@ -3,12 +3,12 @@ import { Request, Response } from 'express';
 const Championship = require('../models/Championship');
 
 export const create = async (req: Request, res: Response) => {
-    if(req.body.name && req.body.edition) {
-        let { name, edition } = req.body;
-        let hasChampionship = await Championship.findOne({where: { name, edition }});
+    if(req.body.campeonato && req.body.edicao) {
+        let { campeonato, edicao } = req.body;
+        let hasChampionship = await Championship.findOne({where: { campeonato, edicao }});
 
         if(!hasChampionship) {
-            let newChampionship = await Championship.create({ name, edition });
+            let newChampionship = await Championship.create({ campeonato, edicao });
 
             res.status(201);
             res.json({ msg: "Cadastrado com sucesso", id: newChampionship.id });
@@ -32,8 +32,12 @@ export const update = async (req: Request, res: Response) => {
     let championship = await Championship.findByPk(id);
 
     if(championship) {
-        championship.name = req.body.name;
-        championship.edition = req.body.edition;
+        await championship.update({
+            campeonato:req.body.campeonato,
+            edicao:req.body.edicao
+        });
+        championship.campeonato = req.body.campeonato;
+        championship.edicao = req.body.edicao;
 
         await championship.save();
 
