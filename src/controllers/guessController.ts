@@ -3,12 +3,12 @@ import { Request, Response } from 'express';
 const Guess = require('../models/Guess');
 
 export const create = async (req: Request, res: Response) => {
-    if(req.body.idjogo && req.body.idvencedor) {
-        let { idjogo, idvencedor, idjogador } = req.body;
-        let hasGuess = await Guess.findOne({where:{ idjogo, idjogador }});
+    if(req.body.id_partida && req.body.id_vencedor) {
+        let { id_partida, id_vencedor, id_jogador } = req.body;
+        let hasGuess = await Guess.findOne({where:{ id_partida, id_jogador }});
 
         if(!hasGuess) {
-            let newGuess = await Guess.create({ idjogo, idvencedor, idjogador });
+            let newGuess = await Guess.create({ id_partida, id_vencedor, id_jogador });
 
             res.status(201); 
             res.json({ msg: "Cadastrado com sucesso", id: newGuess.id });
@@ -21,23 +21,22 @@ export const create = async (req: Request, res: Response) => {
 }
 
 export const list = async (req: Request, res: Response) => {
-    let Guesss = await Guess.findAll();
+    let guess = await Guess.findAll();
 
     res.status(200);
-    res.json({ Palpites: Guesss});
+    res.json({ Palpites: guess});
 }
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
-    let Guesss = await Guess.findByPk(id);
+    let guess = await Guess.findByPk(id);
 
-    if(Guesss) {
-        Guess.teama = req.body.teama;
-        Guess.teamb = req.body.teamb;
-        Guess.goalsteama = req.body.goalsteama;
-        Guess.goalsteamb = req.body.goalsteamb;
-
-        await Guess.save();
+    if(guess) {
+        await guess.update({
+            id_partida:req.body.id_partida,
+            id_vencedor:req.body.id_vencedor,
+            id_jogador:req.body.id_jogador
+        });
 
         res.status(200);
         res.json({msg: 'Palpite atualizada.'})
