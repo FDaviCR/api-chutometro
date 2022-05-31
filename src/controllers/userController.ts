@@ -6,13 +6,13 @@ export const ping = (req: Request, res: Response) => {
     res.json({pong: true});
 }
 
-export const register = async (req: Request, res: Response) => {
-    if(req.body.username && req.body.password) {
-        let { username, password } = req.body;
-        let hasUser = await User.findOne({where: { username }});
+export const create = async (req: Request, res: Response) => {
+    if(req.body.usuario && req.body.senha) {
+        let { usuario, senha } = req.body;
+        let hasUser = await User.findOne({where: { usuario }});
 
         if(!hasUser) {
-            let newUser = await User.create({ username, password });
+            let newUser = await User.create({ usuario, senha });
 
             res.status(201);
             res.json({ id: newUser.id });
@@ -24,30 +24,12 @@ export const register = async (req: Request, res: Response) => {
     }
 }
 
-export const login = async (req: Request, res: Response) => {
-    if(req.body.username && req.body.password) {
-        let username: string = req.body.username;
-        let password: string = req.body.password;
-
-        let user = await User.findOne({ 
-            where: { username, password }
-        });
-
-        if(user) {
-            res.json({ status: true });
-            return;
-        }
-    }else{
-        res.json({ status: false });
-    }
-}
-
-export const list = async (req: Request, res: Response) => {
+export const read = async (req: Request, res: Response) => {
     let users = await User.findAll();
     let list: string[] = [];
 
     for(let i in users) {
-        list.push( users[i].username );
+        list.push( users[i].usuario );
     }
 
     res.json({ list });

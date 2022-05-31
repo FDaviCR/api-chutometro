@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import * as LoginController from '../controllers/loginController';
 import * as UserController from '../controllers/userController';
 import * as ChampionshipController from '../controllers/championshipController';
 import * as TeamController from '../controllers/teamController';
@@ -10,9 +11,11 @@ const router = Router();
 router.get('/ping', UserController.ping);
 
 // Endpoints de Login
-router.post('/user/register', UserController.register);
-router.get('/user/list', UserController.list);
-router.post('/login', UserController.login);
+router.post('/login', LoginController.login);
+
+// Endpoints de Usuario
+router.post('/user/create', UserController.create);
+router.get('/user/read', UserController.read);
 
 // Endpoints de Campeonato
 router.post('/championship/create', ChampionshipController.create);
