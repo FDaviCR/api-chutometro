@@ -3,12 +3,12 @@ import { Request, Response } from 'express';
 const Match = require('../models/Match');
 
 export const create = async (req: Request, res: Response) => {
-    if(req.body.teama && req.body.teamb) {
-        let { teama, teamb, goalsteama, goalsteamb } = req.body;
-        let hasMatch = await Match.findOne({where:{ teama, teamb }});
+    if(req.body.time_a && req.body.time_b) {
+        let { time_a, time_b, gols_a, gols_b } = req.body;
+        let hasMatch = await Match.findOne({where:{ time_a, time_b }});
 
         if(!hasMatch) {
-            let newMatch = await Match.create({ teama, teamb, goalsteama, goalsteamb });
+            let newMatch = await Match.create({ time_a, time_b, gols_a, gols_b });
 
             res.status(201); 
             res.json({ msg: "Cadastrado com sucesso", id: newMatch.id });
@@ -33,10 +33,10 @@ export const update = async (req: Request, res: Response) => {
 
     if(match) {
         await match.update({
-            teama:req.body.teama,
-            teamb:req.body.teamb,
-            goalsteama:req.body.goalsteama,
-            goalsteamb:req.body.goalsteamb
+            time_a:req.body.time_a,
+            time_b:req.body.time_b,
+            gols_a:req.body.gols_a,
+            gols_b:req.body.gols_b
         });
 
         res.status(200);
