@@ -36,10 +36,6 @@ export const update = async (req: Request, res: Response) => {
             campeonato:req.body.campeonato,
             edicao:req.body.edicao
         });
-        championship.campeonato = req.body.campeonato;
-        championship.edicao = req.body.edicao;
-
-        await championship.save();
 
         res.status(200);
         res.json({msg: 'Campeonato atualizado.'})
