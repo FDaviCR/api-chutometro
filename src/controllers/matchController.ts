@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 const Match = require('../models/Match');
+const Guess = require('../models/Guess');
 
 export const create = async (req: Request, res: Response) => {
     if(req.body.time_a && req.body.time_b) {
@@ -38,6 +39,23 @@ export const update = async (req: Request, res: Response) => {
             gols_a:req.body.gols_a,
             gols_b:req.body.gols_b
         });
+
+        // Atualizar palpites baseado no resultado
+        let guess = await Guess.findAll({ where:{id_partida:id}}) 
+
+        let winner = () =>{
+            if(req.body.gols_a > req.body.gols_b){
+                return 
+            }if else(){
+
+            }else{
+                return 0;
+            }
+        }
+
+        // Atualizar tabela de palpites
+
+        // Atualizar tabela de campeonato
 
         res.status(200);
         res.json({msg: 'Partida atualizada.'})
