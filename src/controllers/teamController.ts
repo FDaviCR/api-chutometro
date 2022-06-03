@@ -29,17 +29,24 @@ export const list = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
+    let { time } = req.body;
     let team = await Team.findByPk(id);
 
     if(team) {
-        await team.update({ 
-            time:req.body.time
-        });
+        let exist = await Team.findOne({where: { time }});
 
-        res.status(200);
-        res.json({msg: 'Time atualizado.'})
+        if(exist && time!=team.time){
+            res.json({ error: 'O Time informado já existe.' });
+        }else{
+            await team.update({ 
+                time:time
+            });
+            res.status(200);
+            res.json({msg: 'Time atualizado.'})
+        }
+        
     } else {
-        res.json({ error: 'Time já existe.' });
+        res.json({ error: 'Time não já existe.' });
     }
 }
 
