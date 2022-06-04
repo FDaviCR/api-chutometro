@@ -5,11 +5,11 @@ const Guess = require('../models/Guess');
 
 export const create = async (req: Request, res: Response) => {
     if(req.body.time_a && req.body.time_b) {
-        let { time_a, time_b, gols_a, gols_b } = req.body;
-        let hasMatch = await Match.findOne({where:{ time_a, time_b }});
+        let { time_a, time_b, rodada } = req.body;
+        let hasMatch = await Match.findOne({where:{ time_a, time_b, rodada }});
 
         if(!hasMatch) {
-            let newMatch = await Match.create({ time_a, time_b, gols_a, gols_b });
+            let newMatch = await Match.create({ time_a, time_b, rodada, processado: false });
 
             res.status(201); 
             res.json({ msg: "Cadastrado com sucesso", id: newMatch.id });

@@ -26,16 +26,20 @@ const Match = sequelize.define<MatchInstance>('Match', {
         allowNull: false
     },
     gols_a: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
     gols_b: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: true
     },
     rodada:{
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     processado: {
-        type: DataTypes.BOOLEAN
+        type: DataTypes.BOOLEAN,
+        allowNull: true
     }
 }, {
     tableName: 'partidas',

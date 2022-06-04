@@ -34,13 +34,13 @@ export const update = async (req: Request, res: Response) => {
 
     if(guess) {
         await guess.update({
-            id_partida:req.body.id_partida,
-            id_vencedor:req.body.id_vencedor,
-            id_jogador:req.body.id_jogador
+            id_partida,
+            id_vencedor,
+            id_jogador
         });
 
         res.status(200);
-        res.json({msg: 'Palpite atualizada.'})
+        res.json({msg: 'Palpite atualizado.'})
     } else {
         res.json({ error: 'Palpite não existe.' });
     }
