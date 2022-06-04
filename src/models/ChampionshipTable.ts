@@ -3,8 +3,17 @@ import { sequelize } from '../database/pg';
 
 export interface ChampionshipTableInstance extends Model {
     id: number;
-    name: string;
-    edition: number;
+    id_time: number;
+    id_campeonato: number;
+    pontos: number;
+    vitorias: number;
+    derrotas: number;
+    empates: number;
+    partidas: number;
+    posicao: number;
+    gols_pro: number;
+    gols_contra: number;
+    saldo: number;
 }
 
 const ChampionshipTable = sequelize.define<ChampionshipTableInstance>('ChampionshipTable', {

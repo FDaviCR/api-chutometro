@@ -30,26 +30,35 @@ export const list = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
+    let { time_a, time_b, gols_a, gols_b } = req.body;
     let match = await Match.findByPk(id);
 
     if(match) {
         await match.update({
-            time_a:req.body.time_a,
-            time_b:req.body.time_b,
-            gols_a:req.body.gols_a,
-            gols_b:req.body.gols_b
+            time_a:time_a,
+            time_b:time_b,
+            gols_a:gols_a,
+            gols_b:gols_b
         });
 
         // Atualizar palpites baseado no resultado
         let guess = await Guess.findAll({ where:{id_partida:id}}) 
 
         let winner = () =>{
-            if(req.body.gols_a > req.body.gols_b){
-                return 
-            }if else(){
-
+            if(gols_a > gols_b){
+                return time_a;
+            }else if(gols_b > gols_a){
+                return time_b;
             }else{
                 return 0;
+            }
+        }
+
+        for(let i = 0; i < guess.length; i++) {
+            if(guess.id_vencedor == winner){
+                console.log("Acertou");
+            }else{
+                console.log("Errou!");
             }
         }
 

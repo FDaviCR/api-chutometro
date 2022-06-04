@@ -29,6 +29,7 @@ export const list = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
+    let { id_partida, id_vencedor, id_jogador } = req.body;
     let guess = await Guess.findByPk(id);
 
     if(guess) {

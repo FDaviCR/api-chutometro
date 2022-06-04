@@ -3,10 +3,12 @@ import { sequelize } from '../database/pg';
 
 export interface MatchInstance extends Model {
     id: number;
-    teamA: number;
-    teamB: number;
-    goalsTeamA: number;
-    goalsTeamB: number;
+    team_a: number;
+    team_b: number;
+    goals_a: number;
+    goals_b: number;
+    rodada: number;
+    processado: boolean;
 }
 
 const Match = sequelize.define<MatchInstance>('Match', {
@@ -27,6 +29,9 @@ const Match = sequelize.define<MatchInstance>('Match', {
         type: DataTypes.INTEGER
     },
     gols_b: {
+        type: DataTypes.INTEGER
+    },
+    rodada:{
         type: DataTypes.INTEGER
     },
     processado: {

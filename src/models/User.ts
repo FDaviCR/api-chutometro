@@ -3,9 +3,9 @@ import { sequelize } from '../database/pg';
 
 export interface UserInstance extends Model {
     id: number;
-    username: string;
-    password: string;
-    idTime: number;
+    usuario: string;
+    senha: string;
+    id_time: number;
 }
 
 const User = sequelize.define<UserInstance>('User', {

@@ -3,8 +3,9 @@ import { sequelize } from '../database/pg';
 
 export interface RankInstance extends Model {
     id: number;
-    idUser: number;
-    points: number;
+    id_jogador: number;
+    pontos: number;
+    id_campeonato: number;
 }
 
 const Rank = sequelize.define<RankInstance>('Rank', {
@@ -14,7 +15,7 @@ const Rank = sequelize.define<RankInstance>('Rank', {
         type: DataTypes.INTEGER
     },
     id_jogador: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false
     },
     pontos:{

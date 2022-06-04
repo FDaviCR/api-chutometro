@@ -3,8 +3,8 @@ import { sequelize } from '../database/pg';
 
 export interface ChampionshipInstance extends Model {
     id: number;
-    name: string;
-    edition: number;
+    campeonato: string;
+    edicao: number;
 }
 
 const Championship = sequelize.define<ChampionshipInstance>('Championship', {

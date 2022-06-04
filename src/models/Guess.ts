@@ -3,8 +3,10 @@ import { sequelize } from '../database/pg';
 
 export interface GuessInstance extends Model {
     id: number;
-    idJogo: number;
-    idVencedor: number;
+    id_partida: number;
+    id_vencedor: number;
+    id_jogador: number;
+    processado: number;
 }
 
 const Guess = sequelize.define<GuessInstance>('Guess', {

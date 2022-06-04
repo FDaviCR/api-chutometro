@@ -3,7 +3,8 @@ import { sequelize } from '../database/pg';
 
 export interface TeamInstance extends Model {
     id: number;
-    name: string;
+    time: string;
+    escudo: string;
 }
 
 const Team = sequelize.define<TeamInstance>('Team', {
