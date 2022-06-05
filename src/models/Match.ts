@@ -37,6 +37,10 @@ const Match = sequelize.define<MatchInstance>('Match', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    id_campeonato: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     processado: {
         type: DataTypes.BOOLEAN,
         allowNull: true
