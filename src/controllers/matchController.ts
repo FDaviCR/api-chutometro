@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
+import { Op } from "sequelize";
 
 const Match = require('../models/Match');
-const Guess = require('../models/Guess');
 
 export const create = async (req: Request, res: Response) => {
     if(req.body.time_a && req.body.time_b) {
-        let { time_a, time_b, rodada } = req.body;
-        let hasMatch = await Match.findOne({where:{ time_a, time_b, rodada }});
+        let { time_a, time_b, rodada, id_campeonato } = req.body;
+        let hasMatch = await Match.findOne({where:{ time_a, time_b, rodada, id_campeonato }});
 
         if(!hasMatch) {
-            let newMatch = await Match.create({ time_a, time_b, rodada, processado: false });
+            let newMatch = await Match.create({ time_a, time_b, rodada, id_campeonato, processado: false });
 
             res.status(201); 
             res.json({ msg: "Cadastrado com sucesso", id: newMatch.id });
@@ -30,46 +30,47 @@ export const list = async (req: Request, res: Response) => {
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
-    let { time_a, time_b, gols_a, gols_b } = req.body;
+    let { time_a, time_b, gols_a, gols_b, rodada, id_campeonato } = req.body;
     let match = await Match.findByPk(id);
 
     if(match) {
-        await match.update({
-            time_a:time_a,
-            time_b:time_b,
-            gols_a:gols_a,
-            gols_b:gols_b
+        let exists = await Match.findOne({
+            where:{ 
+                rodada:rodada,
+                [Op.or]:[
+                    {
+                        time_a:{[Op.or]:[time_a, time_b]}
+                    },
+                    {
+                        time_b:{[Op.or]:[time_b, time_a]}
+                    }
+                ],
+                id_campeonato:id_campeonato
+            }
         });
 
-        // Atualizar palpites baseado no resultado
-        let guess = await Guess.findAll({ where:{id_partida:id}}) 
-
-        let winner = () =>{
-            if(gols_a > gols_b){
-                return time_a;
-            }else if(gols_b > gols_a){
-                return time_b;
+        if(!exists) {
+            let existsMatch = await Match.findAll({where:{ time_a, time_b, id_campeonato }});
+            if(!existsMatch){
+                await match.update({
+                    time_a:time_a,
+                    time_b:time_b,
+                    gols_a:gols_a,
+                    gols_b:gols_b,
+                    processado: false
+                });
+        
+                res.status(200);
+                res.json({msg: 'Partida atualizada.'})
             }else{
-                return 0;
+                res.json({ error: `Uma partida entre esses clubes já existe no campeonato atual` });
             }
+            
+        }else{
+            res.json({ error: `Uma ou as duas equipes já tem partida registrada na rodada ${rodada}.` });
         }
-
-        for(let i = 0; i < guess.length; i++) {
-            if(guess.id_vencedor == winner){
-                console.log("Acertou");
-            }else{
-                console.log("Errou!");
-            }
-        }
-
-        // Atualizar tabela de palpites
-
-        // Atualizar tabela de campeonato
-
-        res.status(200);
-        res.json({msg: 'Partida atualizada.'})
     } else {
-        res.json({ error: 'Partida não existe.' });
+        res.json({ error: `Partida com ID: ${rodada} não existe.` });
     }
 }
 
