@@ -27,6 +27,10 @@ const Guess = sequelize.define<GuessInstance>('Guess', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    id_campeonato: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     processado: {
         type: DataTypes.BOOLEAN
     }

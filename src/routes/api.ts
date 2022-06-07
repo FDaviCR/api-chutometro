@@ -5,6 +5,7 @@ import * as UserController from '../controllers/userController';
 import * as ChampionshipController from '../controllers/championshipController';
 import * as TeamController from '../controllers/teamController';
 import * as MatchController from '../controllers/matchController';
+import * as ResultController from '../controllers/resultController';
 
 const router = Router();
 
@@ -34,5 +35,8 @@ router.post('/match/create', MatchController.create);
 router.get('/match/read', MatchController.list);
 router.put('/match/update/:id', MatchController.update);
 router.delete('/match/delete/:id', MatchController.destroy);
+
+// Endpoints de resultado
+router.put('/result/update/:id', ResultController.update);
 
 export default router;
