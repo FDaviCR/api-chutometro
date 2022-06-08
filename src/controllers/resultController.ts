@@ -18,13 +18,19 @@ export const update = async (req: Request, res: Response) => {
         let guess = await Guess.findAll({ where:{id_partida:id}}) 
 
         let winner: number = 0;
+        let points_a: number = 0;
+        let points_b: number = 0;
 
         if(gols_a > gols_b){
             winner = match.time_a;
+            points_a = 3;
         }else if(gols_b > gols_a){
             winner = match.time_b;
+            points_b = 3;
         }else{
             winner = 0;
+            points_a = 1;
+            points_b = 1;
         }
         
         for(let i = 0; i < guess.length; i++) {
@@ -38,6 +44,7 @@ export const update = async (req: Request, res: Response) => {
         // Atualizar tabela de palpites
 
         // Atualizar tabela de campeonato
+         
 
         res.status(200);
         res.json({msg: 'Partida atualizada.'})
