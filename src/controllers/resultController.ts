@@ -36,13 +36,12 @@ export const update = async (req: Request, res: Response) => {
         for(let i = 0; i < guess.length; i++) {
             if(guess.id_vencedor == winner){
                 console.log("Acertou");
+                // Atualizar tabela de palpites
             }else{
                 console.log("Errou!");
             }
         }
-
-        // Atualizar tabela de palpites
-
+        
         // Atualizar tabela de campeonato
          
 
