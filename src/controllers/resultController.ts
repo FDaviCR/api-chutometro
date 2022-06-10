@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 const Match = require('../models/Match');
 const Guess = require('../models/Guess');
+const ChampionshipTable = require('../models/ChampionshipTable');
 
 export const update = async (req: Request, res: Response) => {
     let { id } = req.params;
@@ -43,7 +44,9 @@ export const update = async (req: Request, res: Response) => {
         }
         
         // Atualizar tabela de campeonato
-         
+
+        // Reprocessar tabela do campeonato
+        
 
         res.status(200);
         res.json({msg: 'Partida atualizada.'})
