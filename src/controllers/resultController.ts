@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 const Match = require('../models/Match');
 const Guess = require('../models/Guess');
+const Rank = require('../models/Rank');
 const ChampionshipTable = require('../models/ChampionshipTable');
 
 export const update = async (req: Request, res: Response) => {
@@ -37,7 +38,10 @@ export const update = async (req: Request, res: Response) => {
         for(let i = 0; i < guess.length; i++) {
             if(guess.id_vencedor == winner){
                 console.log("Acertou");
-                // Atualizar tabela de palpites
+                let rank = await Rank.findOne({where:{id_jogador:guess.id_jogador, id_campeonato:guess.id_campeonato}});
+                await rank.update({
+                    pontos: rank.pontos + 1
+                });
             }else{
                 console.log("Errou!");
             }
