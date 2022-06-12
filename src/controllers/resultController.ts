@@ -49,6 +49,27 @@ export const update = async (req: Request, res: Response) => {
         
         // Atualizar tabela de campeonato
 
+        let time_de_casa = await ChampionshipTable.findOne({where: {
+            id_time:match.time_a, id_campeonato:guess.id_campeonato
+        }});
+        let time_de_fora = await ChampionshipTable.findOne({where: {
+            id_time:match.time_b, id_campeonato:guess.id_campeonato
+        }});
+
+        await time_de_casa.update({
+            pontos: time_de_casa.pontos + points_a,
+            gols_pro: time_de_casa.gols_pro + gols_a,
+            gols_contra: time_de_casa.gols_contra + gols_b,
+            saldo: time_de_casa.saldo + (gols_a - gols_b)
+        });
+
+        await time_de_fora.update({
+            pontos: time_de_fora.pontos + points_b,
+            gols_pro: time_de_fora.gols_pro + gols_b,
+            gols_contra: time_de_fora.gols_contra + gols_a,
+            saldo: time_de_fora.saldo + (gols_b - gols_a)
+        });
+
         // Reprocessar tabela do campeonato
         
 
