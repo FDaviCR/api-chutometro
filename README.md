@@ -1,6 +1,6 @@
-# API do Chutômetro
+# API do Chutômetro V.1
 
-API para trabalhar resultados de partidas de futebol. 
+API desenvolvida em Node.js para trabalhar resultados de partidas de futebol. 
 Além de palpites que vão rankear os jogadores que criaram os palpites nos jogos. ⚽
 
 Os jogadores podem ou não palpitar nos jogos dos times que torcem, essa regra deve ser definida na criação do campeonato! 🤞
