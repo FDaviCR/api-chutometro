@@ -32,5 +32,5 @@ const User = sequelize.define<UserInstance>('User', {
     timestamps: false
 });
 
-//User.sync({force: false});
+User.sync({force: false});
 module.exports = User;
